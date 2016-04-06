@@ -1,6 +1,6 @@
 {
   "name": "stratic-extract-header",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "remark plugin to extract values from a standard Stratic header",
   "main": "index.js",
   "scripts": {
