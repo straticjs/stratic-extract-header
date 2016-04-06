@@ -18,11 +18,8 @@
 var mdastToString = require('mdast-util-to-string');
 var _ = require('lodash');
 
+var returnData;
 var metadataNodes = [];
-
-function extractText(ast) {
-
-}
 
 function extract(ast, file, next) {
 	for (var index in ast.children) {
@@ -43,23 +40,24 @@ function extract(ast, file, next) {
 		          .join(' ')
 		          .split('"');
 
-		file.title = arr[1];
+		returnData.title = arr[1];
 
 		var time = arr[3].split(' ');
-		file.time = file.time || {};
-		file.time.epoch = time[0];
+		returnData.time = returnData.time || {};
+		returnData.time.epoch = time[0];
 		// TODO: should this be further parsed?
-		file.time.utcoffset = time[time.length-1];
+		returnData.time.utcoffset = time[time.length-1];
 
-		file.author = arr[5];
+		returnData.author = arr[5];
 
-		file.categories = arr[7].split(',').map(_.trim);
+		returnData.categories = arr[7].split(',').map(_.trim);
 		debugger;
 	});
 
 	next();
 };
 
-module.exports = function() {
+module.exports = function(remark, options, returnDataSet) {
+	returnData = options.data;
 	return extract;
 };
