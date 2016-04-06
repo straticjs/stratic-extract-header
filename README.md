@@ -1,20 +1,20 @@
-# `stratic-validate-header`
+# `stratic-extract-header`
 
-[remark][1] plugin to validate a standard [Stratic][2] header
+[remark][1] plugin to extract values from a standard [Stratic][2] header
 
 ## Installation
 
-    npm install stratic-validate-header
+    npm install stratic-extract-header
 
 ## Usage
 
 ```js
 var remark = require('remark');
-var validateHeader = require('stratic-validate-header');
+var extractHeader = require('stratic-extract-header');
 
-var processor = remark().use(validateHeader);
+var fileData = {}
+var processor = remark().use(extractHeader, {data: fileData});
 
-// No output
 processor.process([
     '# Post information',
     '"Title", "0 UTC-0","Jane Doe", "some, categories"',
@@ -22,12 +22,19 @@ processor.process([
 	'Some arbitrary Markdown content'
 ].join('\n'));
 
-// Throws an Error
-processor.process([
-    '# Invalid',
-    'Some other Markdown'
-].join('\n'));
+console.log(fileData);
 ```
+
+Outputs:
+
+```
+{ title: 'Title',
+  time: { epoch: '0', utcoffset: 'UTC-0' },
+  author: 'Jane Doe',
+  categories: [ 'some', 'categories' ] }
+```
+
+You must pass an options object to `remark.use()`. This object should contain one key, `data`, whose value is a reference to the object that `stratic-extract-header` will populate with metadata information.
 
 ## License
 
