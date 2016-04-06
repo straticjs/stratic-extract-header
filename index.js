@@ -51,7 +51,6 @@ function extract(ast, file, next) {
 		returnData.author = arr[5];
 
 		returnData.categories = arr[7].split(',').map(_.trim);
-		debugger;
 	});
 
 	next();
