@@ -1,5 +1,7 @@
 # `stratic-extract-header`
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/straticjs/stratic-extract-header.svg)](https://greenkeeper.io/)
+
 [remark][1] plugin to extract values from a standard [Stratic][2] header
 
 ## Installation
