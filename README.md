@@ -2,6 +2,13 @@
 
 [remark][1] plugin to extract values from a standard [Stratic][2] header
 
+## DEPRECATED
+
+This module is deprecated. It turns out that the Stratic header just isn't expressive enough and is t
+here for no good reason, really.
+
+You should use [gulp-grey-matter](https://www.npmjs.com/package/gulp-gray-matter/) to parse YAML frontmatter instead. Accordingly, this package is unmaintained.
+
 ## Installation
 
     npm install stratic-extract-header
